@@ -1,0 +1,63 @@
+[project]
+name = "url-unwrap"
+authors = [
+    { name = "Jan Heinrich Merker", email = "heinrich.merker@uni-jena.de" },
+]
+description = "Unwrap redirect links and remove tracking parameters with the ClearURLs rules."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "pydantic~=2.11",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+tests = [
+    "mypy~=1.6",
+    "pytest>=8,<10",
+    "pytest-cov>=6.3,<8.0",
+    "ruff~=0.9",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/janheinrichmerker/url-unwrap"
+"Bug Tracker" = "https://github.com/janheinrichmerker/url-unwrap/issues"
+
+[build-system]
+requires = ["setuptools>=50", "setuptools_scm[toml]>=6.2", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["build", "venv"]
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+
+[tool.ruff]
+exclude = ["build", "venv"]
+
+[tool.mypy]
+exclude = ["build", "venv"]
+ignore_missing_imports = true
+
+[tool.bandit]
+exclude_dirs = ["build", "venv"]
+
+[tool.bandit.assert_used]
+skips = ["**/test_*.py"]
+
+[tool.pytest.ini_options]
+log_cli = true
